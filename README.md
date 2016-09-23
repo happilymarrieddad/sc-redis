@@ -32,8 +32,32 @@ Example (substitute with relevant values):
 var socketCluster = new SocketCluster({
   // ...
   brokerOptions: {
-    host: '54.204.147.15',
+    host: '10.0.0.1',
     port: 6379
+  }
+});
+```
+
+You can add read slaves if you wish and use a redis-cluster. (Email )
+
+```js
+var socketCluster = new SocketCluster({
+  // ...
+  brokerOptions: {
+  	// this will be the ip of the master server
+    host: '10.0.0.1',
+    port: 6379,
+    slaves:[
+    	{
+		    host: '10.0.0.2',
+		    port: 6379,
+	    },
+    	{
+		    host: '10.0.0.3',
+		    port: 6379,
+	    },
+	    ...
+    ]
   }
 });
 ```
@@ -76,6 +100,7 @@ SC-Redis is currently 'experimental'. It still needs a bit of polishing before y
 TODO:
 - Better error logging (capture errors from Redis client and emit 'error' on broker object?)
 - Reconnect behavior (after Redis client connection drops out) - Not sure if this is necessary or Node Redis client already does that automatically?
+  - The reconnect should be handled with the slaves module
 - Synchronize data with Redis - Not just pub/sub channels - Will need to make changes to nData (https://github.com/SocketCluster/ndata) to make this possible.
 
 Pull requests are welcome.
