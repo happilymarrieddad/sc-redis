@@ -38,7 +38,7 @@ var socketCluster = new SocketCluster({
 });
 ```
 
-You can add read slaves if you wish and use a redis-cluster. (Email )
+You can add read slaves if you wish and use a redis-cluster.
 
 ```js
 var socketCluster = new SocketCluster({
